@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
+
+
 
 class ReadMoreWidget extends StatefulWidget {
   const ReadMoreWidget({Key? key}) : super(key: key);
@@ -13,20 +16,18 @@ class _ReadMoreWidgetState extends State<ReadMoreWidget> {
   final String textLay =
       "I LOVE IT ФЩРАФАРФ ФЩГАР ФЩГА РФЩАГ РФЩГАР ФЩГАР ЩГФРА ГЩФРА ЩГФРА ЩГФР ЩГРФЩАГ РФЩГ РАЩФГ РАЩГФР АЩГФРА ЩГФРА ЩГФРАЩГ РФЩГАР ЩГФР ГЩФР ЩГФР АЩГФРА ЩГФРАЩГ РГ РФЩАГ РФЩГРА!";
 
-  static const textStyle = TextStyle(fontSize: 20);
-  static const maxLinesWhenHidden = 1;
-  static const maxLinesWhenShown = 10;
-
-  int get maxLines => showLess ? maxLinesWhenHidden : maxLinesWhenShown;
-  String get buttonText => showLess ? readMore : readLess;
-
-  void onButtonPressed() => setState(() => showLess = !showLess);
-
-  var showLess = true;
+  static const textStyle = TextStyle(fontSize: 16);
+  static const maxLinesWhenHidden = 2;
 
   @override
-  Widget build(BuildContext context) => Column(children: [
-        Text(textLay, style: textStyle, maxLines: maxLines),
-        TextButton(onPressed: onButtonPressed, child: Text(buttonText)),
-      ]);
+  Widget build(BuildContext context) => ReadMoreText(
+    textLay,
+    trimLines: maxLinesWhenHidden,
+    colorClickableText: Colors.pink,
+    trimMode: TrimMode.Line,
+    trimCollapsedText: readMore,
+    trimExpandedText: readLess,
+    moreStyle: textStyle,
+  );
+
 }
